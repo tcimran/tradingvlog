@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="">
+<!-- To declare your language - read more here: https:/www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+    <title>Home</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'hm/layout/styles/layout.css' %}" media="all">
+    <link rel="stylesheet" type="text/css">
+    <style>
+        .aligns{
+        height:100%;
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+
+        }
+       .imgs{
+       height:320px;
+       width:490px;
+       }
+       .l-p{
+       color:red;
+       margin-top:20px
+       }
+    </style>
+</head>
+
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- Top Background Image Wrapper -->
+    <div  class='aligns' style="background-image:url({% static '/hm/images/demo/backgrounds/basebg.jpg' %});">
+        <!-- ################################################################################################ -->
+
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <div id="pageintro" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <article>
+                <h3 class="heading">Quality materials</h3>
+                <p>Quality materials assured.</p>
+                <footer>
+                    <ul class="nospace inline pushright">
+                        <!-- <li><a class="btn" href="#">Pharetra etiam</a></li>
+                        <li><a class="btn inverse" href="#">Sagittis massa</a></li> -->
+                    </ul>
+                </footer>
+            </article>
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+    </div>
+
+    <!-- End Top Background Image Wrapper -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row3">
+        <main class="hoc container clear">
+
+            <!-- main body -->
+            <!-- ################################################################################################ -->
+            <section id="introblocks">
+                <ul class="nospace group btmspace-80">
+                    <!-- <li class="one_third first">
+                        <figure>
+                            <a class="imgover" href="#"><img src="hm/images/demo/348x261.png" alt=""></a>
+                            <figcaption>
+                                <h6 class="heading">Viverra congue</h6>
+                                <p>Aenean metus purus consectetur ac sagittis in malesuada quis nunc ut sed risus nulla etiam gravida velit.</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="one_third"> -->
+
+                    <!---forlooping -->
+                    {% for i in pg.object_list %}
+                    <li class="one_third">
+                        <figure>
+                            <a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt=""  class="imgs"></a>
+                            <figcaption>
+                                <h6 class="heading">{{i.name}}</h6>
+                                <p>{{i.dsc|truncatewords:18}}</p>
+                                <p><b>Price:{{i.price}} AED</b></p>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    {% endfor %}
+                    <!-- endloop -->
+
+                    <!-- <li class="one_third">
+                        <figure>
+                            <a class="imgover" href="#"><img src="hm/images/demo/348x261.png" alt=""></a>
+                            <figcaption>
+                                <h6 class="heading">Laoreet tortor</h6>
+                                <p>Pharetra etiam ut nisi non mi scelerisque consectetur maecenas vel elementum lectus cras maximus finibus.</p>
+                            </figcaption>
+                        </figure>
+                    </li> -->
+                </ul>
+            </section>
+            <br>
+            <hr>
+            <center>
+                {% if pg.has_next == False %}
+                <h1>No more items available </h1>
+                    <p class="btn btn-light btn-sm l-p {% if pg.number == p %} active {% endif %}" style="width=20px; margin-top=300px;">Last page</p>
+                {% else %}
+                {% for p in pg.paginator.page_range %}
+                <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}" style="width=20px">{{p}}</a>
+                {% endfor %}
+                {% endif %}
+
+            </center>
+
+
+    <!-- JAVASCRIPTS -->
+    <script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+    <script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+        </main>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

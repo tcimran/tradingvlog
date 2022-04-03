@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+<title>{{pr.name}}</title>
+{%block content %}
+{% for i in pr %}
+<img src={{i.img.url}} style="width=200px;height=200px">
+<p>{{i.name}}</p><br>
+<p>{{i.dsc}}</p><br>
+<p>{{i.price}}</p><br>
+<p>{% endfor %}</p><br>
+{% endblock %}

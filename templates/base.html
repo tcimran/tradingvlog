@@ -1,0 +1,121 @@
+{% load static %}
+
+<html lang="">
+<!-- To declare your language - read more here: https:/www.w3.org/International/questions/qa-html-language-declarations -->
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'hm/layout/styles/layout.css' %}" media="all">
+    <style>
+        .align{
+
+
+    </style>
+</head>
+
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- Top Background Image Wrapper -->
+    <div class="bgded overlay" style="background-image:url({% static 'hm/images/demo/backgrounds/BLACKEQP.jpg' %});">
+        <!-- ################################################################################################ -->
+        <div class="wrapper row0">
+            <div id="topbar" class="hoc clear">
+                <div class="fl_left">
+                    <!-- ################################################################################################ -->
+                    <ul class="nospace">
+                        <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </div>
+
+                <div class="fl_right">
+                    <!-- ################################################################################################ -->
+                    <ul class="nospace">
+                        <!-- <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+                        <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+                        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+                        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li> -->
+                        <li id="searchform">
+                            <div>
+                                <form action="{% url 'search' %}" method="get">
+                                    {% csrf_token %}
+                                    <fieldset>
+                                        <legend>Quick Search:</legend>
+                                        <input type="text" placeholder="Enter search term&hellip;" name="q">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left">
+                    <!-- ################################################################################################ -->
+                    <h1><a href="index.html">Ecommerce</a></h1>
+                    <!-- ################################################################################################ -->
+                </div>
+
+                <nav id="mainav" class="fl_right">
+                    <!-- ################################################################################################ -->
+                    <ul class="clear">
+                        <li class="active"><a  href="{% url 'home' %}">Home</a></li>
+                        <li class="active"><a  href="{% url 'accounts' %}">Register</a>
+                        <li class="active"><a  href="{% url 'cartdet' %}">Cart {{itc}}</a>
+
+                        <li class="active"><a  href="#">LogOut</a>
+                        <li class="active"><a  href="#">LogIn</a>
+<!--                             <ul>-->
+<!--                                <li><a href="hm/pages/gallery.html">Gallery</a></li>-->
+<!--                                <li><a href="hm/pages/full-width.html">Full Width</a></li>-->
+<!--                                <li><a href="hm/pages/sidebar-left.html">Sidebar Left</a></li>-->
+<!--                                <li><a href="hm/pages/sidebar-right.html">Sidebar Right</a></li>-->
+<!--                                <li><a href="hm/pages/basic-grid.html">Basic Grid</a></li>-->
+<!--                                <li><a href="hm/pages/font-icons.html">Font Icons</a></li>-->
+<!--                            </ul>-->
+                        </li>
+                        <li><a class="drop" href="#">Dropdown</a>
+                            <ul>
+                                <li><a href="/ecom/home">All</a></li>
+                                {% for i in ct %}
+                                <li><a href="{{i.get_url}}">{{i.name}}</a></li>
+<!--                                <li><a class="drop" href="#">Level 2 + Drop</a>-->
+<!--                                    <ul>-->
+<!--                                        <li><a href="#">Level 3</a></li>-->
+<!--                                        <li><a href="#">Level 3</a></li>-->
+<!--                                        <li><a href="#">Level 3</a></li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a href="#">Level 2</a></li>-->
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <!-- <li><a href="#">Link Text</a></li>
+                        <li><a href="#">Link Text</a></li>
+                        <li><a href="#">Link Text</a></li> -->
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </nav>
+            </header>
+        </div>
+
+    </div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
